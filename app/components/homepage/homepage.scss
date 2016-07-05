@@ -1,0 +1,32 @@
+/*
+-----------------------------------------------------
+HOMEPAGE
+-----------------------------------------------------
+*/
+
+.box-homepage {
+    width: $page-max-width;
+    height: calc(100% - #{$header-height});
+    text-align: center;
+    position: relative;
+
+    .start {
+        width: 600px;
+        height: 300px;
+        border: 3px dashed $gray;
+        display: block;
+        border-radius: 20px;
+        cursor: pointer;
+        @include center-absolute();
+
+        > input {
+            display: none;
+        }
+
+        > span {
+            font-size: 20px;
+            line-height: 30px;
+            @include center-absolute();
+        }
+    }
+}

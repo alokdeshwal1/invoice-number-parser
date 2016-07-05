@@ -1,0 +1,76 @@
+/*
+----------------------------------------------------
+COLORS
+----------------------------------------------------
+*/
+
+$white:                         #ffffff !default;
+$black:                         #000000 !default;
+
+$gray:                          #A3A3A3 !default;
+$gray-light:                    #EFEFEF !default;
+$gray-dark:                     #4F4F4F !default;
+
+$blue:                          #3B5998 !default;
+$blue-light:                    lighten($blue, 10%);
+$blue-dark:                     darken($blue, 10%);
+
+$red:                           #C85B5B !default;
+$yellow:                        #FCF488 !default;
+
+/*
+----------------------------------------------------
+ELEMENTS
+----------------------------------------------------
+*/
+
+$text-color-base:               $gray-dark;
+$text-color-hover:              $blue;
+$text-color-link:               $blue;
+$text-color-light:              $gray;
+
+$bg-header:                     $blue;
+$bg-body:                       $gray-light;
+
+$input-text-color:              $blue;
+$input-border-color:            $blue;
+$input-color-error:             $red;
+
+/*
+----------------------------------------------------
+SIZES
+----------------------------------------------------
+*/
+
+$text-size-small:               14px;
+$text-size-medium:              16px;
+$text-size-large:               20px;
+
+/*
+----------------------------------------------------
+LAYOUT
+----------------------------------------------------
+*/
+
+$page-max-width:                988px;
+$header-height:                 40px;
+
+/*
+----------------------------------------------------
+GRID SYSTEM
+----------------------------------------------------
+*/
+
+$grid-col-12:                   64px    !default;
+$grid-col-16:                   43px    !default;
+$grid-gutter:                   20px    !default;
+$grid-gutter-2x:                40px    !default;
+
+/*
+----------------------------------------------------
+RESPONSIVE BREAK POINTS
+----------------------------------------------------
+*/
+
+$break-point-small:             "screen and (max-width: 1024px)";
+$break-point-large:             "screen and (min-width: 1600px)";

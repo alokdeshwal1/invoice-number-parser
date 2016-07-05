@@ -1,0 +1,75 @@
+/*
+----------------------------------------------------
+BUTTONS
+----------------------------------------------------
+*/
+
+.btn {
+    background: $blue;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: $white;
+    border: 1px solid $blue-dark;
+    padding: 6px 12px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color .5s ease;
+
+    + .btn {
+        margin-left: 5px;
+    }
+
+    &:hover {
+        text-decoration: none;
+        background-color: $blue-dark;
+    }
+
+    /*
+    ----------------------------------------------------
+    SIZES
+    ----------------------------------------------------
+    */
+
+    &.btn-large {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 10px 30px;
+        box-sizing: border-box;
+    }
+
+    /*
+    ----------------------------------------------------
+    VARIATIONS
+    ----------------------------------------------------
+    */
+
+    &.disabled {
+        background: $gray;
+        color: $white;
+        border-color: $gray-light;
+        cursor: default;
+
+        &:hover {
+            background: $gray;
+            border-color: $gray-light;
+            color: $white;
+        }
+    }
+
+    &.in-progress {
+
+        i {
+            animation: fa-spin 2s infinite linear;
+
+            &:before {
+                content: "\f110";
+            }
+        }
+    }
+}
