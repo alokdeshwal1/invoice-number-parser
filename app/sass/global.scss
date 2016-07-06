@@ -11,7 +11,8 @@ html, body {
 
 body {
     position: relative;
-    background: $bg-body;
+    background: url('/images/background.jpg');
+    background-size: cover;
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: $text-color-base;
 

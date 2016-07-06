@@ -70,10 +70,12 @@ var Homepage = React.createClass({
         return (
             <section className="box-row box-homepage">
 
-                <label className="start">
-                    <input type="file" ref="file" onChange={this.readFile} />
-                    <span>Drag your files here</span>
-                </label>
+                <div className="wrapper">
+                    <label className="start">
+                        <input type="file" ref="file" onChange={this.readFile} />
+                        <span>Drag your files here</span>
+                    </label>
+                </div>
 
             </section>
         );

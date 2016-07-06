@@ -10,23 +10,28 @@ HOMEPAGE
     text-align: center;
     position: relative;
 
-    .start {
-        width: 600px;
-        height: 300px;
-        border: 3px dashed $gray;
-        display: block;
+    .wrapper {
+        width: 500px;
+        height: 200px;
         border-radius: 20px;
-        cursor: pointer;
+        background: $white;
+        opacity: 0.7;
         @include center-absolute();
 
-        > input {
-            display: none;
-        }
-
-        > span {
-            font-size: 20px;
-            line-height: 30px;
+        .start {
+            cursor: pointer;
+            width: 100%;
             @include center-absolute();
+
+            > input {
+                display: none;
+            }
+
+            > span {
+                font-size: 20px;
+                line-height: 30px;
+                @include center-absolute();
+            }
         }
     }
 }
