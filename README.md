@@ -17,7 +17,6 @@ npm run dev
 ### TODO
 
 * Allow storing result to a file
-* Support illegal numbers (user story 2)
 * Allow drag-and-drop
 * Improve UI/UX
 * Add tests

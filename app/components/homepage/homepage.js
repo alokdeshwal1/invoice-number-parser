@@ -20,8 +20,7 @@ var Homepage = React.createClass({
 
         var reader = new FileReader(),
             file = e.target.files[0],
-            allowedFileTypes = ['text/plain'],
-            numbers = [];
+            allowedFileTypes = ['text/plain'];
 
         if (file && !_.includes(allowedFileTypes, file.type)) {
             console.log('Please choose a valid image file');
@@ -32,29 +31,34 @@ var Homepage = React.createClass({
             reader.readAsText(file);
         }
 
-        reader.onload = function() {
-
-            var text = reader.result,
-                lines = text.split('\n'),
-                length = lines.length,
-                amount = _.floor(length / 4);
-
-            _.times(amount, function(index) {
-                var position = index * 4;
-                numbers.push(helpers.parseNumber(lines[position].substr(0, 27) + lines[position + 1].substr(0, 27) + lines[position + 2].substr(0, 27)));
-            });
-
-            console.log(numbers);
-
-            console.log('**********************');
-
-            _.each(numbers, (number) => {
-               console.log(number + '\n');
-            });
-
-            console.log('**********************');
-
+        reader.onload = () => {
+            this.processFile(reader.result);
         };
+
+    },
+
+    processFile: function(file) {
+
+        helpers.logger('[Homepage] processFile');
+
+        var lines = file.split('\n'),
+            length = lines.length,
+            amount = _.floor(length / 4),
+            numbers = [];
+
+        _.times(amount, (index) => {
+            var position = index * 4;
+            numbers.push(helpers.parseNumber(lines[position].substr(0, 27) + lines[position + 1].substr(0, 27) + lines[position + 2].substr(0, 27)));
+        });
+
+        console.log('**********************');
+
+        _.each(numbers, (number) => {
+            console.log(number + (_.includes(number, '?') ? ' ILLEGAL\n' : '\n'));
+        });
+
+        console.log('**********************');
+
 
     },
 
@@ -72,7 +76,7 @@ var Homepage = React.createClass({
 
                 <div className="wrapper">
                     <label className="start">
-                        <input type="file" ref="file" onChange={this.readFile} />
+                        <input type="file" onChange={this.readFile} />
                         <span>Drag your files here</span>
                     </label>
                 </div>
