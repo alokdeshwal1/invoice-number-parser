@@ -1,7 +1,7 @@
 export default {
 
-    LOGO: 'fa fa-bank',
-    SPINNER: 'fa fa-spin fw-loading',
+    LOGO: 'fa fa-barcode',
+    SPINNER: 'fa fa-spin fa-circle-o-notch',
     BARS: 'fa fa-bars',
     SEARCH: 'fa fa-search',
     NOTIFICATION: 'fa fa-bell-o',

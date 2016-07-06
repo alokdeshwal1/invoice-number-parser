@@ -2,14 +2,20 @@ import _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import helpers from '../../helpers/helpers.js';
+import iconsConstants from '../../constants/icons-constants.js';
 
 var Homepage = React.createClass({
 
     getInitialState: function() {
 
         return {
-            file: null
+            isProcessing: false,
+            outputFile: null,
+            outputFileName: null,
+            processedNumbers: null,
+            errorMessage: null
         }
 
     },
@@ -18,12 +24,17 @@ var Homepage = React.createClass({
 
         helpers.logger('[Homepage] readFile');
 
-        var reader = new FileReader(),
+        var state = this.state,
+            reader = new FileReader(),
             file = e.target.files[0],
             allowedFileTypes = ['text/plain'];
 
+        if (state.isProcessing) {
+            return;
+        }
+
         if (file && !_.includes(allowedFileTypes, file.type)) {
-            console.log('Please choose a valid image file');
+            this.setState({errorMessage: 'Only plain text files are allowed, please try again.'});
             return;
         }
 
@@ -32,12 +43,12 @@ var Homepage = React.createClass({
         }
 
         reader.onload = () => {
-            this.processFile(reader.result);
+            this.processFile(reader.result, file.name);
         };
 
     },
 
-    processFile: function(file) {
+    processFile: function(file, filename) {
 
         helpers.logger('[Homepage] processFile');
 
@@ -46,19 +57,50 @@ var Homepage = React.createClass({
             amount = _.floor(length / 4),
             numbers = [];
 
+        this.setState({
+            isProcessing: true,
+            processedNumbers: amount,
+            errorMessage: null
+        });
+
         _.times(amount, (index) => {
             var position = index * 4;
             numbers.push(helpers.parseNumber(lines[position].substr(0, 27) + lines[position + 1].substr(0, 27) + lines[position + 2].substr(0, 27)));
         });
 
-        console.log('**********************');
+        _.delay(() => {
 
-        _.each(numbers, (number) => {
-            console.log(number + (_.includes(number, '?') ? ' ILLEGAL\n' : '\n'));
+            this.setState({
+                isProcessing: false,
+                outputFile: numbers,
+                outputFileName: filename
+            });
+
+        }, 1000);
+
+    },
+
+    downloadFile: function() {
+
+        helpers.logger('[Homepage] downloadFile');
+
+        var state = this.state;
+
+        helpers.downloadFile(state.outputFile, state.outputFileName);
+
+    },
+
+    restart: function() {
+
+        helpers.logger('[Homepage] restart');
+
+        this.setState({
+            isProcessing: false,
+            outputFile: null,
+            outputFileName: null,
+            processedNumbers: null,
+            errorMessage: null
         });
-
-        console.log('**********************');
-
 
     },
 
@@ -66,31 +108,62 @@ var Homepage = React.createClass({
 
         helpers.logger('[Homepage] render');
 
-        var props = this.props,
-            state = this.state;
+        var state = this.state;
 
-        console.log(state);
+        if (state.outputFile) {
+            return (
+                <section className="box-row box-homepage">
+
+                    <div className='wrapper'>
+                        <label className="start" onClick={this.downloadFile}>
+                            <span>Download</span>
+                        </label>
+                    </div>
+
+                    <footer>
+                        <p><strong>{state.processedNumbers}</strong> invoice numbers were processed! <span className="restart hint--top" data-hint="Click to restart" onClick={this.restart}>Restart?</span></p>
+                    </footer>
+                    
+                </section>
+            )
+        }
+
+        if (state.isProcessing) {
+            return (
+                <section className="box-row box-homepage">
+
+                    <div className='wrapper'>
+                        <label className="start">
+                            <span>Processing</span>
+                        </label>
+                    </div>
+
+                    <footer>
+                        <p>Processing <strong>{state.processedNumbers}</strong> invoice numbers...</p>
+                    </footer>
+
+                </section>
+            );
+        }
 
         return (
             <section className="box-row box-homepage">
 
-                <div className="wrapper">
+                <div className={classNames('wrapper', 'hint--top')} data-hint="Click here to select the file you would like to convert">
                     <label className="start">
                         <input type="file" onChange={this.readFile} />
-                        <span>Drag your files here</span>
+                        <span>Start</span>
                     </label>
+
                 </div>
+
+                <footer>
+                    <p>{state.errorMessage ? state.errorMessage : 'Click on the Start button to select your input file'}</p>
+                </footer>
 
             </section>
         );
     }
 });
 
-
-function mapStateToProps(state) {
-    return {
-        shows: _.get(state, 'homepage.shows', [])
-    };
-}
-
-export default connect(mapStateToProps)(Homepage);
+export default Homepage;

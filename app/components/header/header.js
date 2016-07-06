@@ -12,7 +12,7 @@ var Header = React.createClass({
 
         return (
             <header>
-                <span className="logo"><i className={iconsConstants.LOGO} /> Invoice Number Parser</span>
+                <span className="logo">Invoice Number Parser</span>
             </header>
         );
     }

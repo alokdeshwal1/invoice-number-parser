@@ -1,6 +1,6 @@
 {
   "name": "invoice-number-parser",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "scripts": {
     "build": "webpack --debug -v --stats --progress --config ./bin/webpack-config.js",
     "start": "npm run build && env environment=prod node bin/prod.js",

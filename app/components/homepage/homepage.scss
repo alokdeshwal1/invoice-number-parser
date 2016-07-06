@@ -6,17 +6,29 @@ HOMEPAGE
 
 .box-homepage {
     width: $page-max-width;
-    height: calc(100% - #{$header-height});
+    height: 100%;
     text-align: center;
     position: relative;
 
     .wrapper {
-        width: 500px;
+        width: 200px;
         height: 200px;
-        border-radius: 20px;
-        background: $white;
-        opacity: 0.7;
+        border-radius: 50%;
+        background-color: $white;
+        border: 10px solid $gray;
+        box-sizing: border-box;
+        transition: all 400ms ease-in;
         @include center-absolute();
+
+        &:hover {
+            background-color: $blue;
+            border-color: $white;
+            color: $white;
+        }
+
+        &:after {
+            font-size: 15px;
+        }
 
         .start {
             cursor: pointer;
@@ -29,9 +41,43 @@ HOMEPAGE
             }
 
             > span {
-                font-size: 20px;
-                line-height: 30px;
+                font-size: 30px;
+                font-weight: 100;
                 @include center-absolute();
+            }
+        }
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 500px;
+        height: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $gray-dark;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        p {
+            text-align: center;
+            color: $white;
+            font-size: 15px;
+            line-height: 50px;
+            margin: 0;
+            font-weight: 100;
+
+            strong {
+                font-weight: 500;
+            }
+
+            .restart {
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }

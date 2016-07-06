@@ -11,16 +11,13 @@ body > header {
     width: 100%;
     height: $header-height;
     background: $white;
-    @include box-shadow(0, 2px, 5px, rgba(0, 0, 0, 0.2));
 
     .logo {
-        font-size: 16px;
+        font-size: 40px;
+        font-weight: 100;
         color: $blue;
         line-height: $header-height;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        @include center-absolute();
     }
 
     + main {

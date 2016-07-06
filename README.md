@@ -1,6 +1,6 @@
 # Invoice Number Parser
 
-![version](https://img.shields.io/badge/version-0.3.0-green.svg)
+![version](https://img.shields.io/badge/version-0.4.0-green.svg)
 
 Invoice Number Parser is a web app that converts ASCII based numbers into real numbers
 
@@ -30,10 +30,7 @@ npm run dev // production mode is not stable at the moment
 
 ### TODO / WIP
 
-* Feature: Allow storing result to a file
 * Feature: Allow drag-and-drop
-* Design: Improve layout UI
-* Design: Improve UX
 * Performance: Read file by chunks
 * Performance: Add file validation and size limit
 * Tests: Add tests with mocha.js
