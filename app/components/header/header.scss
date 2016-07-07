@@ -18,6 +18,11 @@ body > header {
         color: $blue;
         line-height: $header-height;
         @include center-absolute();
+
+        @include low-resolution {
+            font-size: 30px;
+        }
+
     }
 
     + main {
