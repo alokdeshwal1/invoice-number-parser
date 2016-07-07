@@ -1,7 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
 import helpers from '../../helpers/helpers.js';
 import iconsConstants from '../../constants/icons-constants.js';
@@ -121,7 +119,7 @@ var Homepage = React.createClass({
                     </div>
 
                     <footer>
-                        <p><strong>{state.processedNumbers}</strong> invoice numbers were processed! <span className="restart hint--top" data-hint="Click to restart" onClick={this.restart}>Restart?</span></p>
+                        <p><i className={iconsConstants.CHECK} /> <strong>{state.processedNumbers}</strong> invoice numbers were processed! <span className="restart hint--top" data-hint="Click to restart" onClick={this.restart}>Restart?</span></p>
                     </footer>
                     
                 </section>
@@ -139,7 +137,7 @@ var Homepage = React.createClass({
                     </div>
 
                     <footer>
-                        <p>Processing <strong>{state.processedNumbers}</strong> invoice numbers...</p>
+                        <p><i className={iconsConstants.INFO} /> Processing <strong>{state.processedNumbers}</strong> invoice numbers...</p>
                     </footer>
 
                 </section>
@@ -158,7 +156,10 @@ var Homepage = React.createClass({
                 </div>
 
                 <footer>
-                    <p>{state.errorMessage ? state.errorMessage : 'Click on the Start button to select your input file'}</p>
+                    {state.errorMessage
+                        ? <p><i className={iconsConstants.WARNING} /> {state.errorMessage}</p>
+                        : <p><i className={iconsConstants.INFO} /> Click on the Start button to select your input file</p>
+                    }
                 </footer>
 
             </section>

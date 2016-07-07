@@ -49,9 +49,7 @@ var RootContainer = React.createClass({
 });
 
 function mapStateToProps(state) {
-    return {
-        location: _.get(state, 'location')
-    };
+    return {};
 }
 
 export default connect(mapStateToProps)(RootContainer);
