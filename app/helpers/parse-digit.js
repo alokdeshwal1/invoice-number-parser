@@ -1,9 +1,12 @@
 export default function parseDigit(digit) {
 
+    // a super straight forward approach to convert our digit representation (9 chars string) into an actual digit
+    // at first I was using an array representation for every digit but it was over engineered :)
+
     /*
-       _  _     _  _  _  _  _
-     | _| _||_||_ |_   ||_||_|
-     ||_  _|  | _||_|  ||_| _|
+      _    _  _     _  _  _  _  _
+     | | | _| _||_||_ |_   ||_||_|
+     |_| ||_  _|  | _||_|  ||_| _|
 
     */
 
